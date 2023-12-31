@@ -19,4 +19,14 @@ public class MyErrorHandler {
 
 		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.BAD_REQUEST);
 	}
+
+	@ExceptionHandler(DataNotFoundException.class)
+	public ResponseEntity<ResponseStructure<String>> handler(DataNotFoundException exception) {
+		ResponseStructure<String> structure = new ResponseStructure<String>();
+		structure.setMessage("Data Not Found");
+		structure.setStatus(HttpStatus.NOT_FOUND.value());
+		structure.setData(exception.getMessage());
+
+		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NOT_FOUND);
+	}
 }

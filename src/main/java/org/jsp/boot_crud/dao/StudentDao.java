@@ -3,6 +3,7 @@ package org.jsp.boot_crud.dao;
 import java.util.List;
 
 import org.jsp.boot_crud.dto.Student;
+import org.jsp.boot_crud.exception.DataNotFoundException;
 import org.jsp.boot_crud.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,7 +27,7 @@ public class StudentDao {
 	}
 
 	public Student findById(int id) {
-		return repository.findById(id).orElse(null);
+		return repository.findById(id).orElseThrow(() -> new DataNotFoundException());
 	}
 
 	public List<Student> findByName(String name) {

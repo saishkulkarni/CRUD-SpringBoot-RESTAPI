@@ -30,49 +30,54 @@ public class StudentController {
 
 	// Save Multiple Data
 	@PostMapping("/students/many")
-	public ResponseEntity<List<Student>> create(@RequestBody List<Student> students) {
-		return new ResponseEntity<List<Student>>(service.create(students), HttpStatus.CREATED);
+	@Operation(summary = "Save Multiple Record")
+	public ResponseEntity<ResponseStructure<List<Student>>> create(@RequestBody List<Student> students) {
+		return new ResponseEntity<ResponseStructure<List<Student>>>(service.create(students), HttpStatus.CREATED);
 	}
 
 	// Fetch All Data
 	@GetMapping("/students")
-	public ResponseEntity<List<Student>> fetchAll() {
-		return new ResponseEntity<List<Student>>(service.fetchAll(), HttpStatus.FOUND);
+	@Operation(summary = "Fetch All Records")
+	public ResponseEntity<ResponseStructure<List<Student>>> fetchAll() {
+		return new ResponseEntity<ResponseStructure<List<Student>>>(service.fetchAll(), HttpStatus.FOUND);
 	}
 
 	// Fetch Data By Id
 	@GetMapping("/students/{id}")
-	public ResponseEntity<Student> fetchById(@PathVariable int id) {
-		return new ResponseEntity<Student>(service.findById(id), HttpStatus.FOUND);
+	@Operation(summary = "Fetch Record By Id")
+	public ResponseEntity<ResponseStructure<Student>> fetchById(@PathVariable int id) {
+		return new ResponseEntity<ResponseStructure<Student>>(service.findById(id), HttpStatus.FOUND);
 	}
 
 	// Fetch By Name
 	@GetMapping("/students/name/{name}")
-	public ResponseEntity<List<Student>> fetchByName(@PathVariable String name) {
-		return new ResponseEntity<List<Student>>(service.fetchByName(name), HttpStatus.FOUND);
+	public ResponseEntity<ResponseStructure<List<Student>>> fetchByName(@PathVariable String name) {
+		return new ResponseEntity<ResponseStructure<List<Student>>>(service.fetchByName(name), HttpStatus.FOUND);
 	}
 
 	// Fetch By Mobile
 	@GetMapping("/students/mobile/{no}")
-	public ResponseEntity<List<Student>> fetchByMobile(@PathVariable long no) {
-		return new ResponseEntity<List<Student>>(service.fetchByMobile(no), HttpStatus.FOUND);
+	public ResponseEntity<ResponseStructure<List<Student>>> fetchByMobile(@PathVariable long no) {
+		return new ResponseEntity<ResponseStructure<List<Student>>>(service.fetchByMobile(no), HttpStatus.FOUND);
 	}
 
 	// Fetch By Result
 	@GetMapping("/students/result/{result}")
-	public ResponseEntity<List<Student>> fetchByResults(@PathVariable String result) {
-		return new ResponseEntity<List<Student>>(service.fetchByResult(result), HttpStatus.FOUND);
+	public ResponseEntity<ResponseStructure<List<Student>>> fetchByResults(@PathVariable String result) {
+		return new ResponseEntity<ResponseStructure<List<Student>>>(service.fetchByResult(result), HttpStatus.FOUND);
 	}
 
 	// Fetch By Percentage Greater
 	@GetMapping("/students/percentage/greater/{percentage}")
-	public ResponseEntity<List<Student>> fetchByPercentageGreater(@PathVariable double percentage) {
-		return new ResponseEntity<List<Student>>(service.fetchByPercentageGreater(percentage), HttpStatus.FOUND);
+	public ResponseEntity<ResponseStructure<List<Student>>> fetchByPercentageGreater(@PathVariable double percentage) {
+		return new ResponseEntity<ResponseStructure<List<Student>>>(service.fetchByPercentageGreater(percentage),
+				HttpStatus.FOUND);
 	}
 
 	// Fetch By Percentage Greater
 	@GetMapping("/students/percentage/lesser/{percentage}")
-	public ResponseEntity<List<Student>> fetchByPercentageLesser(@PathVariable double percentage) {
-		return new ResponseEntity<List<Student>>(service.fetchByPercentageLesser(percentage), HttpStatus.FOUND);
+	public ResponseEntity<ResponseStructure<List<Student>>> fetchByPercentageLesser(@PathVariable double percentage) {
+		return new ResponseEntity<ResponseStructure<List<Student>>>(service.fetchByPercentageLesser(percentage),
+				HttpStatus.FOUND);
 	}
 }
