@@ -27,7 +27,7 @@ public class StudentDao {
 	}
 
 	public Student findById(int id) {
-		return repository.findById(id).orElseThrow(() -> new DataNotFoundException("No Data with id: "+id));
+		return repository.findById(id).orElseThrow(() -> new DataNotFoundException("No Data with id: " + id));
 	}
 
 	public List<Student> findByName(String name) {
@@ -49,6 +49,14 @@ public class StudentDao {
 	public List<Student> findByPercentageLesser(double percentage) {
 
 		return repository.findByPercentageLessThan(percentage);
+	}
+
+	public void delete(int id) {
+		repository.deleteById(id);
+	}
+
+	public Student update(Student student) {
+		return repository.save(student);
 	}
 
 }

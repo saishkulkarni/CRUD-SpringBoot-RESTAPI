@@ -140,4 +140,66 @@ public class StudentService {
 		return structure;
 	}
 
+	public ResponseStructure<Student> deleteById(int id) {
+		ResponseStructure<Student> structure = new ResponseStructure<Student>();
+		structure.setData(dao.findById(id));
+		dao.delete(id);
+		structure.setMessage("Record Deleted Success");
+		structure.setStatus(HttpStatus.OK.value());
+		return structure;
+	}
+
+	public ResponseStructure<Student> update(Student student) {
+		double percentage = (student.getEnglish() + student.getMaths() + student.getScience()) / 3.0;
+		student.setPercentage(percentage);
+		if (student.getEnglish() < 35 || student.getScience() < 35 || student.getMaths() < 35)
+			student.setResult("fail");
+		else {
+			if (percentage >= 85)
+				student.setResult("distinction");
+			else if (percentage >= 60)
+				student.setResult("firstclass");
+			else
+				student.setResult("secondclass");
+		}
+		ResponseStructure<Student> structure = new ResponseStructure<Student>();
+		structure.setMessage("Data Updated Success");
+		structure.setStatus(HttpStatus.OK.value());
+		structure.setData(dao.update(student));
+		return structure;
+	}
+
+	public ResponseStructure<Student> update(int id, Student student) {
+		Student student2 = dao.findById(id);
+
+		if (student.getScience() != 0)
+			student2.setScience(student.getScience());
+		if (student.getMaths() != 0)
+			student2.setMaths(student.getMaths());
+		if (student.getEnglish() != 0)
+			student2.setEnglish(student.getEnglish());
+		if (student.getMobile() != 0)
+			student2.setMobile(student.getMobile());
+		if (student.getName() != null)
+			student2.setName(student.getName());
+
+		double percentage = (student2.getEnglish() + student2.getMaths() + student2.getScience()) / 3.0;
+		student2.setPercentage(percentage);
+		if (student2.getEnglish() < 35 || student2.getScience() < 35 || student2.getMaths() < 35)
+			student2.setResult("fail");
+		else {
+			if (percentage >= 85)
+				student2.setResult("distinction");
+			else if (percentage >= 60)
+				student2.setResult("firstclass");
+			else
+				student2.setResult("secondclass");
+		}
+		ResponseStructure<Student> structure = new ResponseStructure<Student>();
+		structure.setMessage("Data Updated Success");
+		structure.setStatus(HttpStatus.OK.value());
+		structure.setData(dao.update(student2));
+		return structure;
+	}
+
 }
