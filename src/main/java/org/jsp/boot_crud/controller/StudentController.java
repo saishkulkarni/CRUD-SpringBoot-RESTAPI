@@ -51,24 +51,28 @@ public class StudentController {
 
 	// Fetch By Name
 	@GetMapping("/students/name/{name}")
+	@Operation(summary = "Fetch Record By Name")
 	public ResponseEntity<ResponseStructure<List<Student>>> fetchByName(@PathVariable String name) {
 		return new ResponseEntity<ResponseStructure<List<Student>>>(service.fetchByName(name), HttpStatus.FOUND);
 	}
 
 	// Fetch By Mobile
 	@GetMapping("/students/mobile/{no}")
+	@Operation(summary = "Fetch Record By Mobile")
 	public ResponseEntity<ResponseStructure<List<Student>>> fetchByMobile(@PathVariable long no) {
 		return new ResponseEntity<ResponseStructure<List<Student>>>(service.fetchByMobile(no), HttpStatus.FOUND);
 	}
 
 	// Fetch By Result
 	@GetMapping("/students/result/{result}")
+	@Operation(summary = "Fetch Record By Result")
 	public ResponseEntity<ResponseStructure<List<Student>>> fetchByResults(@PathVariable String result) {
 		return new ResponseEntity<ResponseStructure<List<Student>>>(service.fetchByResult(result), HttpStatus.FOUND);
 	}
 
 	// Fetch By Percentage Greater
 	@GetMapping("/students/percentage/greater/{percentage}")
+	@Operation(summary = "Fetch Record Greater")
 	public ResponseEntity<ResponseStructure<List<Student>>> fetchByPercentageGreater(@PathVariable double percentage) {
 		return new ResponseEntity<ResponseStructure<List<Student>>>(service.fetchByPercentageGreater(percentage),
 				HttpStatus.FOUND);
@@ -76,6 +80,7 @@ public class StudentController {
 
 	// Fetch By Percentage Greater
 	@GetMapping("/students/percentage/lesser/{percentage}")
+	@Operation(summary = "Fetch Record Lesser")
 	public ResponseEntity<ResponseStructure<List<Student>>> fetchByPercentageLesser(@PathVariable double percentage) {
 		return new ResponseEntity<ResponseStructure<List<Student>>>(service.fetchByPercentageLesser(percentage),
 				HttpStatus.FOUND);

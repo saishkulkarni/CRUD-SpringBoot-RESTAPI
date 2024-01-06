@@ -83,7 +83,7 @@ public class StudentService {
 	public ResponseStructure<List<Student>> fetchByName(String name) {
 		List<Student> list = dao.findByName(name);
 		if (list.isEmpty())
-			throw new DataNotFoundException();
+			throw new DataNotFoundException("No Data Found with Name: " + name);
 
 		ResponseStructure<List<Student>> structure = new ResponseStructure<List<Student>>();
 		structure.setData(list);
@@ -95,7 +95,7 @@ public class StudentService {
 	public ResponseStructure<List<Student>> fetchByMobile(long no) {
 		List<Student> list = dao.findByMobile(no);
 		if (list.isEmpty())
-			throw new DataNotFoundException();
+			throw new DataNotFoundException("No Data Found with Mobile: " + no);
 
 		ResponseStructure<List<Student>> structure = new ResponseStructure<List<Student>>();
 		structure.setData(list);
@@ -107,7 +107,7 @@ public class StudentService {
 	public ResponseStructure<List<Student>> fetchByResult(String result) {
 		List<Student> list = dao.findByResult(result);
 		if (list.isEmpty())
-			throw new DataNotFoundException();
+			throw new DataNotFoundException("No Data Found with Result: " + result);
 
 		ResponseStructure<List<Student>> structure = new ResponseStructure<List<Student>>();
 		structure.setData(list);
@@ -119,7 +119,7 @@ public class StudentService {
 	public ResponseStructure<List<Student>> fetchByPercentageGreater(double percentage) {
 		List<Student> list = dao.findByPercentageGreater(percentage);
 		if (list.isEmpty())
-			throw new DataNotFoundException();
+			throw new DataNotFoundException("No Data Found with Percentage Greater Than: " + percentage);
 
 		ResponseStructure<List<Student>> structure = new ResponseStructure<List<Student>>();
 		structure.setData(list);
@@ -131,7 +131,7 @@ public class StudentService {
 	public ResponseStructure<List<Student>> fetchByPercentageLesser(double percentage) {
 		List<Student> list = dao.findByPercentageLesser(percentage);
 		if (list.isEmpty())
-			throw new DataNotFoundException();
+			throw new DataNotFoundException("No Data Found with Percentage Lesser Than: " + percentage);
 
 		ResponseStructure<List<Student>> structure = new ResponseStructure<List<Student>>();
 		structure.setData(list);

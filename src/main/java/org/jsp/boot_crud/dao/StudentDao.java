@@ -27,7 +27,7 @@ public class StudentDao {
 	}
 
 	public Student findById(int id) {
-		return repository.findById(id).orElseThrow(() -> new DataNotFoundException());
+		return repository.findById(id).orElseThrow(() -> new DataNotFoundException("No Data with id: "+id));
 	}
 
 	public List<Student> findByName(String name) {
